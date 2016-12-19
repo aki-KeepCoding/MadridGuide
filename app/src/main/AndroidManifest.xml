@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="info.akixe.madridguide">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".MadridGuideApp"
         android:allowBackup="true"
@@ -18,6 +19,12 @@
         </activity>
         <activity android:name=".activities.ShopsActivity">
         </activity>
-    </application>
 
+        <!-- services -->
+
+        <!-- content-providers -->
+        <provider
+            android:authorities="info.akixe.madridguide.provider"
+            android:name=".manager.db.provider.MadridGuideProvider" />
+    </application>
 </manifest>
