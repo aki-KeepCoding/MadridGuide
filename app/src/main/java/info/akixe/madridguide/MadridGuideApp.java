@@ -7,8 +7,11 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 
+import info.akixe.madridguide.interactors.CacheAllShopsInteractor;
+import info.akixe.madridguide.interactors.GetAllShopsInteractor;
 import info.akixe.madridguide.manager.db.ShopDAO;
 import info.akixe.madridguide.model.Shop;
+import info.akixe.madridguide.model.Shops;
 
 public class MadridGuideApp extends Application {
 
@@ -23,12 +26,24 @@ public class MadridGuideApp extends Application {
         appContext = new WeakReference<Context>(getApplicationContext());
 
         // test data
-        insertTestDataInDB();
+        // insertTestDataInDB();
 
         // Picasso
         Picasso.with(getApplicationContext()).setLoggingEnabled(true);
         Picasso.with(getApplicationContext()).setIndicatorsEnabled(true);
 
+        // TODO: 26/12/16 Meter una barra de espera 
+         new GetAllShopsInteractor().execute(getApplicationContext(), new GetAllShopsInteractor.GetAllShopsInteractorResponse() {
+             @Override
+             public void onResponse(Shops shops) {
+                 new CacheAllShopsInteractor().execute(getApplicationContext(), shops, new CacheAllShopsInteractor.CacheAllShopsInteractorResponse() {
+                     @Override
+                     public void onResponse(boolean success) {
+
+                     }
+                 });
+             }
+         });
     }
 
     private void insertTestDataInDB() {

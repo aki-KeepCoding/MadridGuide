@@ -62,7 +62,19 @@ public class MadridGuideProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(Uri uri) {
-        return null;
+        String type = null;
+
+        switch (uriMatcher.match(uri)) {
+            case SINGLE_SHOP:
+                type = "vnd.android.cursor.item/vnd.info.akixe.madridguide.provider";
+                break;
+            case ALL_SHOPS:
+                type = "vnd.android.cursor.dir/vnd.info.akixe.madridguide.provider";
+                break;
+            default: break;
+        }
+
+        return type;
     }
 
     @Nullable
@@ -72,8 +84,9 @@ public class MadridGuideProvider extends ContentProvider {
         // Insert the values into the table
         ShopDAO dao = new ShopDAO(getContext());
 
-        Shop shop = new Shop(contentValues.getAsInteger("id"), contentValues.getAsString("name"));
-        // TODO: 20/12/16 Faltan los set del resto de valores...
+
+        Shop shop = ShopDAO.getShopFromContentValues(contentValues);
+
         long id = dao.insert(shop);
 
         // Construct and return the URI of the newly inserted row.
@@ -122,6 +135,7 @@ public class MadridGuideProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
+        // TODO: 22/12/16 Terminar el update del provider en la práctica
         return 0;
     }
 }

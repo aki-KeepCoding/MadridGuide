@@ -12,17 +12,15 @@ import info.akixe.madridguide.R;
 import info.akixe.madridguide.model.Shop;
 import info.akixe.madridguide.model.Shops;
 import info.akixe.madridguide.views.ShopRowViewHolder;
+import info.akixe.madridguide.views.OnElementClick;
 
 public class ShopsAdapter extends RecyclerView.Adapter<ShopRowViewHolder> {
 
     private final LayoutInflater layoutInflater;
     private final Shops shops;
 
-    public interface OnElementClick {
-        public void clikedOn(Shop shop, int position);
-    }
 
-    private OnElementClick listener;
+    private OnElementClick<Shop> listener;
 
     public ShopsAdapter(Shops shops, Context context) {
         this.shops = shops;
@@ -43,7 +41,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopRowViewHolder> {
             @Override
             public void onClick(View view) {
                 if (ShopsAdapter.this.listener != null) {
-                    listener.clikedOn(shop, position);
+                    ShopsAdapter.this.listener.clikedOn(shop, position);
                 }
             }
         });

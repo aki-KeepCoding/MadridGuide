@@ -3,7 +3,10 @@ package info.akixe.madridguide.navigator;
 import android.content.Intent;
 
 import info.akixe.madridguide.activities.MainActivity;
+import info.akixe.madridguide.activities.ShopDetailActivity;
 import info.akixe.madridguide.activities.ShopsActivity;
+import info.akixe.madridguide.model.Shop;
+import info.akixe.madridguide.util.Constants;
 
 public class Navigator {
 
@@ -15,4 +18,10 @@ public class Navigator {
         return i;
     }
 
+    public static Intent navigateFromShopsActivityToShopDetailActivity(final ShopsActivity shopsActivity, final Shop shop) {
+        final Intent i = new Intent(shopsActivity, ShopDetailActivity.class);
+        i.putExtra(Constants.INTENT_KEY_SHOP_DETAIL, shop);
+        shopsActivity.startActivity(i);
+        return i;
+    }
 }

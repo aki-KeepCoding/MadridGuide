@@ -9,11 +9,6 @@ public class Shops implements IShopsIterable, IShopsUpdatable {
 
     List<Shop> shops;
 
-    /**
-     *
-     * @param shopList
-     * @return
-     */
     public static @NonNull Shops build(@NonNull final List<Shop> shopList){
         Shops shops = new Shops(shopList);
 

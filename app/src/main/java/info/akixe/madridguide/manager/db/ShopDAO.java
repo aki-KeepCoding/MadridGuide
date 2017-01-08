@@ -13,8 +13,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import info.akixe.madridguide.model.Shop;
+import info.akixe.madridguide.model.Shops;
 
-import static info.akixe.madridguide.manager.db.DBConstants.*;
+import static info.akixe.madridguide.manager.db.DBConstants.ALL_COLUMNS;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_ADDRESS;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_DESCRIPTION;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_ID;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_IMAGE_URL;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_LATITUDE;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_LOGO_IMAGE_URL;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_LONGITUDE;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_NAME;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_SHOP_URL;
+import static info.akixe.madridguide.manager.db.DBConstants.TABLE_SHOP;
 
 public class ShopDAO implements DAOPersistable<Shop> {
     private WeakReference<Context> context;
@@ -57,8 +68,12 @@ public class ShopDAO implements DAOPersistable<Shop> {
         return id;
     }
 
-    private ContentValues getContentValues(Shop shop) {
-        ContentValues contentValues = new ContentValues();
+    public static ContentValues getContentValues(final @NonNull Shop shop) {
+        final ContentValues contentValues = new ContentValues();
+
+        if (shop == null) {
+            return contentValues;
+        }
 
         contentValues.put(KEY_SHOP_ADDRESS, shop.getAddress());
         contentValues.put(KEY_SHOP_DESCRIPTION, shop.getDescription());
@@ -69,6 +84,22 @@ public class ShopDAO implements DAOPersistable<Shop> {
         contentValues.put(KEY_SHOP_NAME, shop.getName());
 
         return contentValues;
+    }
+
+    public static @NonNull Shop getShopFromContentValues(final @NonNull ContentValues contentValues) {
+        final Shop shop = new Shop(1, "");
+
+        // TODO: 22/12/16 Poner los try..catch en el getShopFromContentValues (ver vid día 5 a las 21:09) Extraer a clase propia el getContentValues y getShopContentValues
+        //shop.setId(contentValues.getAsInteger(KEY_SHOP_ID));
+        shop.setName(contentValues.getAsString(KEY_SHOP_NAME));
+        shop.setAddress(contentValues.getAsString(KEY_SHOP_ADDRESS));
+        shop.setDescription(contentValues.getAsString(KEY_SHOP_DESCRIPTION));
+        shop.setUrl(contentValues.getAsString(KEY_SHOP_URL));
+        shop.setLogoImgUrl(contentValues.getAsString(KEY_SHOP_LOGO_IMAGE_URL));
+        shop.setLongitude(contentValues.getAsFloat(KEY_SHOP_LONGITUDE));
+        shop.setLatitude(contentValues.getAsFloat(KEY_SHOP_LATITUDE));
+
+        return  shop;
     }
 
     @Override
@@ -122,7 +153,8 @@ public class ShopDAO implements DAOPersistable<Shop> {
     }
 
     @NonNull
-    private Shop getShop(Cursor c) {
+    public static Shop getShop(Cursor c) {
+        // TODO: 22/12/16 Testear método estático getShop de ShopDAO
         long ident = c.getLong(c.getColumnIndex(KEY_SHOP_ID));
         String name = c.getString(c.getColumnIndex(KEY_SHOP_NAME));
         Shop shop = new Shop(ident, name);
@@ -135,6 +167,16 @@ public class ShopDAO implements DAOPersistable<Shop> {
         shop.setLongitude(c.getFloat(c.getColumnIndex(KEY_SHOP_LONGITUDE)));
         shop.setUrl(c.getString(c.getColumnIndex(KEY_SHOP_URL)));
         return shop;
+    }
+
+    @NonNull
+    public static Shops getShops(Cursor data) {
+        List<Shop> shopList = new LinkedList<>();
+        while(data.moveToNext()) {
+            Shop shop = ShopDAO.getShop(data);
+            shopList.add(shop);
+        }
+        return Shops.build(shopList);
     }
 
     @Nullable

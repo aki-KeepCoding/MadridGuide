@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 'Google Inc.:Google APIs:24'
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "info.akixe.madridguide"
@@ -25,8 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
 
     })
-
-
+    compile 'com.google.android.gms:play-services-maps:7.5.0'
 
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
