@@ -68,7 +68,7 @@ public class ActivitiesAdapter extends POIAdapter<Activity> {
     private OnPOIElementClick<Activity> listener;
 
     public ActivitiesAdapter(Activities activities, Context context) {
-        super(activities.allActivities(), context);
+        super(activities.all(), context);
         this.activities = activities;
         this.layoutInflater = LayoutInflater.from(context);
     }

@@ -14,6 +14,7 @@ import info.akixe.madridguide.views.base.POIRowViewHolder;
 
 public abstract class POIAdapter<T> extends RecyclerView.Adapter<POIRowViewHolder<T>> {
     private final List<T> items;
+
     private OnPOIElementClick<T> listener;
 
     public POIAdapter(List<T> items, Context context) {
@@ -37,8 +38,9 @@ public abstract class POIAdapter<T> extends RecyclerView.Adapter<POIRowViewHolde
 
     @Override
     public int getItemCount() {
-        return (int)items.size();
+        return (int) items.size();
     }
+
 
     public void setOnElementClickListener(@NonNull final OnPOIElementClick listener) {
         this.listener = listener;

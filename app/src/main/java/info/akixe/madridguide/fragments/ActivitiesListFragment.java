@@ -19,6 +19,7 @@ import info.akixe.madridguide.views.base.OnPOIElementClick;
 public class ActivitiesListFragment extends Fragment {
 
     private Activities activities;
+    private Activities filteredActivities;
     private RecyclerView activitiesRecyclerView;
     private ActivitiesAdapter adapter;
 
@@ -37,7 +38,7 @@ public class ActivitiesListFragment extends Fragment {
     }
 
     public void updateUI() {
-        adapter = new ActivitiesAdapter(activities, getActivity());
+        adapter = new ActivitiesAdapter(filteredActivities, getActivity());
         activitiesRecyclerView.setAdapter(adapter);
 
         adapter.setOnElementClickListener(new OnPOIElementClick<Activity>() {
@@ -56,6 +57,16 @@ public class ActivitiesListFragment extends Fragment {
 
     public void setActivities(Activities activities) {
         this.activities = activities;
+        this.filteredActivities = this.activities;
+        updateUI();
+    }
+
+    public void filter(String query) {
+        if(!query.isEmpty()) {
+            this.filteredActivities = activities.filter(query);
+        } else {
+            this.filteredActivities = activities;
+        }
         updateUI();
     }
 

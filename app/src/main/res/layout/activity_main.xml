@@ -5,22 +5,44 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="info.akixe.madridguide.activities.MainActivity">
 
-    <Button
-        android:id="@+id/activity_main_shops_button"
-        android:layout_width="@dimen/activity_main_shops_button_width"
-        android:layout_height="@dimen/activity_main_shops_button_heigth"
-        android:layout_centerHorizontal="false"
-        android:text="@string/activity_main_shops_button_text"/>
-    <Button
-        android:id="@+id/activity_main_activities_button"
-        android:layout_width="@dimen/activity_main_activities_button_width"
-        android:layout_height="@dimen/activity_main_activities_button_heigth"
-        android:layout_centerHorizontal="true"
-        android:text="@string/activities"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:id="@+id/toolbar">
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/activity_main_shops_button"
+            android:layout_width="@dimen/activity_main_shops_button_width"
+            android:layout_height="@dimen/activity_main_shops_button_heigth"
+            android:layout_centerHorizontal="false"
+            android:text="@string/activity_main_shops_button_text"/>
+        <Button
+            android:id="@+id/activity_main_activities_button"
+            android:layout_width="@dimen/activity_main_activities_button_width"
+            android:layout_height="@dimen/activity_main_activities_button_heigth"
+            android:layout_centerHorizontal="true"
+            android:text="@string/activities"/>
+    </LinearLayout>
 </LinearLayout>

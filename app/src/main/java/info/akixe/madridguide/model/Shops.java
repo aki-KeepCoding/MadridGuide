@@ -4,7 +4,11 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shops implements IShopsIterable, IShopsUpdatable {
+import info.akixe.madridguide.model.base.IFilterable;
+import info.akixe.madridguide.model.base.IIterable;
+import info.akixe.madridguide.model.base.IUpdatable;
+
+public class Shops implements IIterable<Shop>, IUpdatable<Shop>, IFilterable<Shops> {
 
     List<Shop> shops;
 
@@ -41,7 +45,7 @@ public class Shops implements IShopsIterable, IShopsUpdatable {
     }
 
     @Override
-    public List<Shop> allShops() {
+    public List<Shop> all() {
         return shops;
     }
 
@@ -58,5 +62,17 @@ public class Shops implements IShopsIterable, IShopsUpdatable {
     @Override
     public void edit(Shop newShop, long index) {
         shops.set((int)index, newShop);
+    }
+
+    @Override
+    public Shops filter(String query) {
+        List<Shop> filteredShopList = new ArrayList<>();
+
+        for (Shop shop: shops) {
+            if (shop.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredShopList.add(shop);
+            }
+        }
+        return Shops.build(filteredShopList);
     }
 }

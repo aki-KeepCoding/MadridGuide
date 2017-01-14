@@ -10,20 +10,18 @@ import info.akixe.madridguide.R;
 import info.akixe.madridguide.adapters.base.POIAdapter;
 import info.akixe.madridguide.model.Shop;
 import info.akixe.madridguide.model.Shops;
-import info.akixe.madridguide.views.base.OnPOIElementClick;
 import info.akixe.madridguide.views.ShopRowViewHolder;
+import info.akixe.madridguide.views.base.OnPOIElementClick;
 
 public class ShopsAdapter extends POIAdapter<Shop> {
 
     private final LayoutInflater layoutInflater;
-    private final Shops shops;
 
 
     private OnPOIElementClick<Shop> listener;
 
     public ShopsAdapter(Shops shops, Context context) {
-        super(shops.allShops(), context);
-        this.shops = shops;
+        super(shops.all(), context);
         this.layoutInflater = LayoutInflater.from(context);
     }
 
