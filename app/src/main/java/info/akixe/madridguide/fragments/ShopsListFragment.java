@@ -13,7 +13,7 @@ import info.akixe.madridguide.R;
 import info.akixe.madridguide.adapters.ShopsAdapter;
 import info.akixe.madridguide.model.Shop;
 import info.akixe.madridguide.model.Shops;
-import info.akixe.madridguide.views.OnElementClick;
+import info.akixe.madridguide.views.base.OnPOIElementClick;
 
 
 public class ShopsListFragment extends Fragment {
@@ -22,7 +22,7 @@ public class ShopsListFragment extends Fragment {
     private ShopsAdapter adapter;
     private Shops shops;
 
-    private OnElementClick<Shop> listener;
+    private OnPOIElementClick<Shop> listener;
 
     public ShopsListFragment() {
         // Required empty public constructor
@@ -44,7 +44,7 @@ public class ShopsListFragment extends Fragment {
         adapter = new ShopsAdapter(shops, getActivity());
         shopsRecyclerView.setAdapter(adapter);
 
-        adapter.setOnElementClickListener(new OnElementClick<Shop>() {
+        adapter.setOnElementClickListener(new OnPOIElementClick<Shop>() {
             @Override
             public void clikedOn(Shop shop, int position) {
                 if (ShopsListFragment.this.listener != null) {
@@ -64,11 +64,11 @@ public class ShopsListFragment extends Fragment {
         updateUI();
     }
 
-    public OnElementClick<Shop> getListener() {
+    public OnPOIElementClick<Shop> getListener() {
         return listener;
     }
 
-    public void setListener(OnElementClick<Shop> listener) {
+    public void setListener(OnPOIElementClick<Shop> listener) {
         this.listener = listener;
     }
 }

@@ -42,6 +42,11 @@
         <activity android:name=".activities.ShopDetailActivity">
         </activity>
 
+        <activity android:name=".activities.ActivitiesActivity">
+        </activity>
+        <activity android:name=".activities.ActivityDetailActivity">
+        </activity>
+
         <!-- services -->
 
 

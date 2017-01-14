@@ -7,10 +7,11 @@ import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
 
+import info.akixe.madridguide.interactors.CacheAllActivitiesInteractor;
 import info.akixe.madridguide.interactors.CacheAllShopsInteractor;
+import info.akixe.madridguide.interactors.GetAllActivitiesInteractor;
 import info.akixe.madridguide.interactors.GetAllShopsInteractor;
-import info.akixe.madridguide.manager.db.ShopDAO;
-import info.akixe.madridguide.model.Shop;
+import info.akixe.madridguide.model.Activities;
 import info.akixe.madridguide.model.Shops;
 
 public class MadridGuideApp extends Application {
@@ -31,35 +32,40 @@ public class MadridGuideApp extends Application {
         // Picasso
         Picasso.with(getApplicationContext()).setLoggingEnabled(true);
         Picasso.with(getApplicationContext()).setIndicatorsEnabled(true);
-
-        // TODO: 26/12/16 Meter una barra de espera 
-         new GetAllShopsInteractor().execute(getApplicationContext(), new GetAllShopsInteractor.GetAllShopsInteractorResponse() {
+        // TODO: 26/12/16 Meter una barra de espera
+        new GetAllShopsInteractor().execute(getApplicationContext(), new GetAllShopsInteractor.GetAllShopsInteractorResponse() {
              @Override
              public void onResponse(Shops shops) {
-                 new CacheAllShopsInteractor().execute(getApplicationContext(), shops, new CacheAllShopsInteractor.CacheAllShopsInteractorResponse() {
-                     @Override
-                     public void onResponse(boolean success) {
-
-                     }
+                 new CacheAllShopsInteractor().execute(getApplicationContext(),
+                         shops,
+                         new CacheAllShopsInteractor.CacheAllShopsInteractorResponse() {
+                            @Override
+                            public void onResponse(boolean success) {}
                  });
              }
          });
+
+
+        new GetAllActivitiesInteractor().execute(getApplicationContext(), new GetAllActivitiesInteractor.GetAllActivitiesInteractorResponse() {
+            @Override
+            public void onResponse(Activities activities) {
+                new CacheAllActivitiesInteractor().execute(getApplicationContext(), activities, new CacheAllActivitiesInteractor.CacheAllActivitiesInteractorResponse() {
+                    @Override
+                    public void onResponse(boolean success) {
+
+                    }
+                });
+            }
+        });
     }
 
-    private void insertTestDataInDB() {
-        ShopDAO dao = new ShopDAO(getApplicationContext());
-        for (int i = 0; i < 20; i++) {
-            Shop shop = new Shop(0, "Shop " + i).setLogoImgUrl("http://www.blog.amayapadilla.com/wp-content/uploads/2014/12/new-wall-e-box-sitting.jpg");
-            dao.insert(shop);
-        }
-    }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
     }
 
-    public static Context getAppContex(){
+    public static Context getAppContext(){
         return appContext.get();
     }
 }

@@ -43,11 +43,6 @@ public class ShopDAO implements DAOPersistable<Shop> {
         this(context, DBHelper.getInstance(context));
     }
 
-    /**
-     * Insert a shop in DB
-     * @param shop shouldn't be null
-     * @return 0 if shop is nul, id if insert is OK, INVALID_ID if insert fails
-     */
     @Override
     public long insert(@NonNull Shop shop) {
 
@@ -78,6 +73,7 @@ public class ShopDAO implements DAOPersistable<Shop> {
         contentValues.put(KEY_SHOP_ADDRESS, shop.getAddress());
         contentValues.put(KEY_SHOP_DESCRIPTION, shop.getDescription());
         contentValues.put(KEY_SHOP_URL, shop.getUrl());
+        contentValues.put(KEY_SHOP_IMAGE_URL, shop.getImageUrl());
         contentValues.put(KEY_SHOP_LOGO_IMAGE_URL, shop.getLogoImgUrl());
         contentValues.put(KEY_SHOP_LONGITUDE, shop.getLongitude());
         contentValues.put(KEY_SHOP_LATITUDE, shop.getLatitude());

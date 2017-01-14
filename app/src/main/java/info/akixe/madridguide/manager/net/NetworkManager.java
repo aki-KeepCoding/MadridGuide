@@ -25,6 +25,12 @@ public class NetworkManager {
         public void getShopEntitiesSuccess(List<ShopEntity> result);
         public void getShopEntitiesError();
     }
+
+
+    public interface GetActivitiesListener {
+        public void getActivityEntitiesSuccess(List<ActivityEntity> result);
+        public void getActivityEntitiesError();
+    }
     WeakReference<Context> context;
 
     public NetworkManager(Context context) {
@@ -69,6 +75,51 @@ public class NetworkManager {
 
             ShopResponse shopResponse = gson.fromJson(reader, ShopResponse.class);
             result = shopResponse.result;
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public void getActivitiesFromServer(final GetActivitiesListener listener) {
+        RequestQueue queue = Volley.newRequestQueue(context.get());
+        String url = context.get().getString(R.string.activities_url);
+
+        StringRequest request = new StringRequest(
+                url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("JSON", response);
+                        List<ActivityEntity> activityResponse = parseActivityResponse(response);
+                        if (listener != null) {
+                            listener.getActivityEntitiesSuccess(activityResponse);
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        listener.getActivityEntitiesError();
+                    }
+                }
+        );
+        queue.add(request);
+    }
+
+    // TODO: 12/1/17 Generalizar
+    private List<ActivityEntity> parseActivityResponse(String response) {
+        List<ActivityEntity> result = null;
+        try {
+            Reader reader = new StringReader(response);
+            Gson gson = new GsonBuilder().create();
+
+            ActivityResponse activityResponse = gson.fromJson(reader, ActivityResponse.class);
+            result = activityResponse.result;
 
 
         }catch (Exception e) {

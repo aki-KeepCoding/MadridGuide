@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.activity_main_shops_button)
     Button shopsButton;
 
+    @BindView(R.id.activity_main_activities_button)
+    Button activitiesButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setupShopsButton();
-
+        setupActivitiesButton();
 
     }
 
@@ -32,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Navigator.navigateFromMainActivityToShopsActivity(MainActivity.this);
+            }
+        });
+    }
+
+    private void setupActivitiesButton() {
+        activitiesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigator.navigateFromMainActivityToActivitiesActivity(MainActivity.this);
             }
         });
     }

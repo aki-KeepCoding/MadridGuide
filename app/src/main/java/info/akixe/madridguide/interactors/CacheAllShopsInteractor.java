@@ -2,7 +2,6 @@ package info.akixe.madridguide.interactors;
 
 
 import android.content.Context;
-import android.os.Looper;
 
 import info.akixe.madridguide.manager.db.ShopDAO;
 import info.akixe.madridguide.model.Shop;
@@ -29,12 +28,13 @@ public class CacheAllShopsInteractor {
                     }
                 }
 
-                Looper mainThread = Looper.getMainLooper();
-                // mainThread.getThread().run
-                // TODO: 24/12/16 Falta implementar la ejecución del response  de CacheAllShopsInteractor en el hilo principal
-                if (responder != null) {
-                    responder.onResponse(true);
-                }
+                MainThread.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        responder.onResponse(true);
+                    }
+                });
+
             }
         }).start();
     }

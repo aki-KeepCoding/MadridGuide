@@ -21,7 +21,7 @@ public class ActivityTest extends AndroidTestCase {
         assertNotNull(sut);
     }
 
-    public void testANewShopStoresDataCorrectly (){
+    public void testANewActivityStoresDataCorrectly (){
         Activity sut = new Activity(10, ACTIVITY_NAME);
         sut.setImgUrl(ACTIVITY_IMG_URL);
         sut.setAddress(ACTIVITY_ADDRESS);
@@ -40,5 +40,4 @@ public class ActivityTest extends AndroidTestCase {
         assertEquals(ACTIVITY_LONGITUDE, sut.getLongitude());
 
     }
-
 }

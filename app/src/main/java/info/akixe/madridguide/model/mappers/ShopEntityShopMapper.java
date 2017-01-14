@@ -15,8 +15,10 @@ public class ShopEntityShopMapper {
             Shop shop = new Shop(entity.getId(), entity.getName())
                     .setDescription(entity.getDescriptionES())
                     .setAddress(entity.getAddress())
+                    .setImageUrl(entity.getImg())
                     .setLogoImgUrl(entity.getLogo_img())
-                    .setImageUrl(entity.getImg());
+                    .setLongitude(entity.getLongitude())
+                    .setLatitude(entity.getLatitude());
             shops.add(shop);
         }
 

@@ -1,5 +1,4 @@
 package info.akixe.madridguide.model;
-
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
