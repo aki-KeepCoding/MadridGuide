@@ -13,14 +13,16 @@ public class CacheAllActivitiesInteractor {
         public void onResponse(boolean success);
     }
 
-    public void execute(final Context context, final Activities activities, final CacheAllActivitiesInteractorResponse responder) {
+    public void execute(final Context context,
+                        final Activities activities,
+                        final CacheAllActivitiesInteractorResponse responder) {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 ActivityDAO dao = new ActivityDAO(context);
                 boolean success = false;
-                for(Activity activity: activities.allActivities()){
+                for(Activity activity: activities.all()){
                     success = dao.insert(activity) > 0;
                     if(!success) {
                         break;

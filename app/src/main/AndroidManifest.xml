@@ -38,11 +38,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ShopsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
         <activity android:name=".activities.ShopDetailActivity">
         </activity>
 
         <activity android:name=".activities.ActivitiesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
         <activity android:name=".activities.ActivityDetailActivity">
         </activity>

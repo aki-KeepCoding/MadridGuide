@@ -6,7 +6,11 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activities implements IActivitiesIterable, IActivitiesUpdatable {
+import info.akixe.madridguide.model.base.IFilterable;
+import info.akixe.madridguide.model.base.IIterable;
+import info.akixe.madridguide.model.base.IUpdatable;
+
+public class Activities implements IIterable<Activity>, IUpdatable<Activity>, IFilterable<Activities> {
 
     List<Activity> activities;
 
@@ -43,7 +47,7 @@ public class Activities implements IActivitiesIterable, IActivitiesUpdatable {
     }
 
     @Override
-    public List<Activity> allActivities() {
+    public List<Activity> all() {
         return activities;
     }
 
@@ -60,6 +64,18 @@ public class Activities implements IActivitiesIterable, IActivitiesUpdatable {
     @Override
     public void edit(Activity newActivity, long index) {
         activities.set((int)index, newActivity);
+    }
+
+    @Override
+    public Activities filter(String query) {
+        List<Activity> filteredActivityList = new ArrayList<>();
+
+        for (Activity activity: activities) {
+            if (activity.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredActivityList.add(activity);
+            }
+        }
+        return Activities.build(filteredActivityList);
     }
 }
 
