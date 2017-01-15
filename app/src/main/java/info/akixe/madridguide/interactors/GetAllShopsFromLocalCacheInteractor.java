@@ -2,14 +2,13 @@ package info.akixe.madridguide.interactors;
 
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 
 import java.util.List;
 
 import info.akixe.madridguide.manager.db.ShopDAO;
 import info.akixe.madridguide.model.Shop;
 import info.akixe.madridguide.model.Shops;
+import info.akixe.madridguide.util.MainThread;
 
 public class GetAllShopsFromLocalCacheInteractor {
 
@@ -38,15 +37,4 @@ public class GetAllShopsFromLocalCacheInteractor {
 }
 
 
-class MainThread {
-    public static void run(final Runnable runnable) {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                runnable.run();
-            }
-        });
 
-    }
-}

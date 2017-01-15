@@ -75,4 +75,13 @@ public class Shops implements IIterable<Shop>, IUpdatable<Shop>, IFilterable<Sho
         }
         return Shops.build(filteredShopList);
     }
+
+    public List<String> getAllImageURLStrings() {
+        List<String> imgURLStrings = new ArrayList<>();
+        for (Shop shop: this.shops) {
+            imgURLStrings.add(shop.getImageUrl());
+            imgURLStrings.add(shop.getLogoImgUrl());
+        }
+        return imgURLStrings;
+    }
 }

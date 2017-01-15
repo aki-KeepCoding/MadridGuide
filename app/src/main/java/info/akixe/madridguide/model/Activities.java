@@ -77,5 +77,13 @@ public class Activities implements IIterable<Activity>, IUpdatable<Activity>, IF
         }
         return Activities.build(filteredActivityList);
     }
+
+    public List<String> getAllImageURLStrings() {
+        List<String> imgURLStrings = new ArrayList<>();
+        for (Activity activity: this.activities) {
+            imgURLStrings.add(activity.getImgUrl());
+        }
+        return imgURLStrings;
+    }
 }
 

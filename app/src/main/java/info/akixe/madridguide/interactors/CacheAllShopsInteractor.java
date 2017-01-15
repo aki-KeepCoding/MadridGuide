@@ -6,6 +6,7 @@ import android.content.Context;
 import info.akixe.madridguide.manager.db.ShopDAO;
 import info.akixe.madridguide.model.Shop;
 import info.akixe.madridguide.model.Shops;
+import info.akixe.madridguide.util.MainThread;
 
 public class CacheAllShopsInteractor {
 
@@ -13,13 +14,15 @@ public class CacheAllShopsInteractor {
         public void onResponse(boolean success);
     }
 
-    public void execute(final Context context, final Shops shops, final CacheAllShopsInteractorResponse responder) {
+    public void execute(final Context context,
+                        final Shops shops,
+                        final CacheAllShopsInteractorResponse responder) {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 ShopDAO dao = new ShopDAO(context);
-
+                dao.deleteAll();
                 boolean success = false;
                 for (Shop shop: shops.all()) {
                     success = dao.insert(shop) > 0;

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.lang.ref.WeakReference;
@@ -43,6 +44,7 @@ public class ActivityRowViewHolder  extends POIRowViewHolder<Activity> {
         nameTextView.setText(activity.getName());
         Picasso.with(context.get())
                 .load(activity.getImgUrl())
+                .networkPolicy(NetworkPolicy.OFFLINE)
                 .placeholder(android.R.drawable.ic_dialog_email)
                 .into(imageView);
     }
