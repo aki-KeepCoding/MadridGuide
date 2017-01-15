@@ -28,6 +28,8 @@
                             android:id="@+id/edit"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:textColorHint="@color/colorPrimaryLight"
                             android:hint="@android:string/search_go"/>
                 </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
