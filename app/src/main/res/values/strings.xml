@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MadridGuide</string>
+    <string name="activity_main_shops_button_text">Shops</string>
+    <string name="activities">Activities</string>
 </resources>
