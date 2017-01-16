@@ -25,7 +25,7 @@
 
     <application
         android:name=".MadridGuideApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -54,7 +54,9 @@
         </activity>
 
         <!-- services -->
-
+        <service
+            android:name=".manager.ImageCacheManager"
+            android:exported="false"/>
 
         <!-- content-providers -->
         <provider

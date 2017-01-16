@@ -16,6 +16,9 @@ public class ActivityEntityActivityMapper {
             Activity activity = new Activity(entity.getId(), entity.getName())
                     .setDescription(entity.getDescriptionES())
                     .setAddress(entity.getAddress())
+                    .setLongitude(entity.getLongitude())
+                    .setLatitude(entity.getLatitude())
+                    .setMapImgUrlWithLatLon(entity.getLatitude(), entity.getLongitude())
                     .setImgUrl(entity.getImg());
             activities.add(activity);
         }

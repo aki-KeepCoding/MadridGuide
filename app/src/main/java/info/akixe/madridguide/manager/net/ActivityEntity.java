@@ -10,6 +10,8 @@ public class ActivityEntity {
     @SerializedName("address") private String address;
     @SerializedName("url") private String url;
     @SerializedName("description_es") private String descriptionES;
+    @SerializedName("gps_lon") private float longitude;
+    @SerializedName("gps_lat") private float latitude;
 
     public Long getId() {
         return id;
@@ -34,4 +36,21 @@ public class ActivityEntity {
     public String getDescriptionES() {
         return descriptionES;
     }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
 }

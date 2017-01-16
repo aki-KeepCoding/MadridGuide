@@ -55,6 +55,10 @@ public class ActivitiesListFragment extends Fragment {
         return activities;
     }
 
+    public Activities getFilteredActivities() {
+        return filteredActivities;
+    }
+
     public void setActivities(Activities activities) {
         this.activities = activities;
         this.filteredActivities = this.activities;

@@ -22,6 +22,7 @@ import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_ID;
 import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_IMAGE_URL;
 import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_LATITUDE;
 import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_LONGITUDE;
+import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_MAP_IMAGE_URL;
 import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_NAME;
 import static info.akixe.madridguide.manager.db.DBConstants.KEY_ACTIVITY_URL;
 import static info.akixe.madridguide.manager.db.DBConstants.TABLE_ACTIVITY;
@@ -139,6 +140,7 @@ public class ActivityDAO implements DAOPersistable<Activity> {
         activity.setAddress(c.getString(c.getColumnIndex(KEY_ACTIVITY_ADDRESS)));
         activity.setDescription(c.getString(c.getColumnIndex(KEY_ACTIVITY_DESCRIPTION)));
         activity.setImgUrl(c.getString(c.getColumnIndex(KEY_ACTIVITY_IMAGE_URL)));
+        activity.setMapImgUrl(c.getString(c.getColumnIndex(KEY_ACTIVITY_MAP_IMAGE_URL)));
         activity.setLatitude(c.getFloat(c.getColumnIndex(KEY_ACTIVITY_LATITUDE)));
         activity.setLongitude(c.getFloat(c.getColumnIndex(KEY_ACTIVITY_LONGITUDE)));
         activity.setUrl(c.getString(c.getColumnIndex(KEY_ACTIVITY_URL)));
@@ -166,6 +168,7 @@ public class ActivityDAO implements DAOPersistable<Activity> {
         contentValues.put(KEY_ACTIVITY_DESCRIPTION, activity.getDescription());
         contentValues.put(KEY_ACTIVITY_URL, activity.getUrl());
         contentValues.put(KEY_ACTIVITY_IMAGE_URL, activity.getImgUrl());
+        contentValues.put(KEY_ACTIVITY_MAP_IMAGE_URL, activity.getMapImgUrl());
         contentValues.put(KEY_ACTIVITY_LONGITUDE, activity.getLongitude());
         contentValues.put(KEY_ACTIVITY_LATITUDE, activity.getLatitude());
         contentValues.put(KEY_ACTIVITY_NAME, activity.getName());

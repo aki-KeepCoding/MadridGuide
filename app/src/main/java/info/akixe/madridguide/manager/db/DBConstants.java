@@ -19,6 +19,7 @@ public class DBConstants {
     public static final String KEY_ACTIVITY_ID = "_id";
     public static final String KEY_ACTIVITY_NAME = "NAME";
     public static final String KEY_ACTIVITY_IMAGE_URL = "IMAGE_URL";
+    public static final String KEY_ACTIVITY_MAP_IMAGE_URL = "MAP_IMAGE_URL";
     public static final String KEY_ACTIVITY_ADDRESS = "ADDRESS";
     public static final String KEY_ACTIVITY_URL = "URL";
     public static final String KEY_ACTIVITY_LATITUDE = "LATITUDE";
@@ -42,6 +43,7 @@ public class DBConstants {
             KEY_ACTIVITY_ID,
             KEY_ACTIVITY_NAME,
             KEY_ACTIVITY_IMAGE_URL,
+            KEY_ACTIVITY_MAP_IMAGE_URL,
             KEY_ACTIVITY_ADDRESS,
             KEY_ACTIVITY_URL,
             KEY_ACTIVITY_LATITUDE,
@@ -69,6 +71,7 @@ public class DBConstants {
                     + KEY_ACTIVITY_ID + " integer primary key autoincrement, "
                     + KEY_ACTIVITY_NAME + " text not null,"
                     + KEY_ACTIVITY_IMAGE_URL + " text, "
+                    + KEY_ACTIVITY_MAP_IMAGE_URL + " text, "
                     + KEY_ACTIVITY_ADDRESS + " text,"
                     + KEY_ACTIVITY_URL + " text,"
                     + KEY_ACTIVITY_LATITUDE + " real,"

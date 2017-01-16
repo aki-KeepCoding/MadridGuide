@@ -35,14 +35,14 @@
     </android.support.design.widget.AppBarLayout>
 
     <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/activity_activities_frag_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         />
     <fragment
-        android:id="@+id/activity_activities_fragment_activities_list"
+        android:id="@+id/activity_activities_frag_activities_list"
         android:name="info.akixe.madridguide.fragments.ActivitiesListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

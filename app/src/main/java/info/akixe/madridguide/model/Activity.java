@@ -5,35 +5,10 @@ import java.io.Serializable;
 
 public class Activity implements Serializable{
 
-    // TODO: 8/1/17 Borrar comentarios en Activity
-    // Modelo
-    /*
-    id
-    name
-    img
-    logo_img
-    address
-    opening_hours_es
-    opening_hours_en
-    opening_hours_cn
-    opening_hours_jp
-    opening_hours_mx
-    opening_hours_cl
-    telephone
-    email
-    url
-    description_es/en/...
-    gps_lat
-    gps_lon
-    special_offer
-    categories[..],
-    rutas: [...],
-    keywords_es/...
-    * */
-
     private long id;
     private String name;
     private String imgUrl;
+    private String mapImgUrl;
     private String address;
     private String url;
     private String description;
@@ -114,6 +89,24 @@ public class Activity implements Serializable{
 
     public Activity setLongitude(float longitude) {
         this.longitude = longitude;
+        return this;
+    }
+
+    public String getMapImgUrl() {
+        return mapImgUrl;
+    }
+
+    public Activity setMapImgUrl(String mapImgUrl){
+        this.mapImgUrl = mapImgUrl;
+        return this;
+    }
+
+    public Activity setMapImgUrlWithLatLon(float lat, float lon) {
+        StringBuilder builder = new StringBuilder("http://maps.googleapis.com/maps/api/staticmap?")
+                .append("center=")
+                .append(lat).append(",").append(lon)
+                .append("&zoom=17&size=320x220");
+        this.mapImgUrl = builder.toString();
         return this;
     }
 }

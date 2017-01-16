@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loadData() {
-        loadShopsData();
         loadActivitiesData();
+        loadShopsData();
     }
 
     private void loadShopsData() {
